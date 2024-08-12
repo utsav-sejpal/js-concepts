@@ -39,6 +39,7 @@ class Car {
     constructor(name, color = 'black') {
         this.name = name;
         this.color = color;
+
     }
 
     getCarName() {
@@ -128,7 +129,7 @@ let add = x => x + x;
 // Higher order function
 function step1(param) {
     return function (childParam) {
-        
+
         console.log(param);
         console.log(childParam);
     }
@@ -139,9 +140,30 @@ function step1(param) {
 
 let date = new Date();
 // console.log(date.getFullYear());
- 
+
 
 // BOM
-console.log(window);
+// console.log(window);
 // window.open('https://www.w3schools.com/js/js_window.asp')
-console.log(screen.width);
+// console.log(screen.width);
+// window.location.assign('https://www.w3schools.com/js/js_window_location.asp')
+let form = document.getElementById('mobileForm');
+let mobile = document.getElementById('mobile');
+
+form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    try {
+        // alet(123)
+        if (mobile.value == '') throw 'Mobile no. is required';
+        if (isNaN(mobile.value)) throw "Mobile no. not a number";
+        if (mobile.value.length < 10) throw 'Mobile no. at least contain 10 digit';
+        console.log(mobile.value);
+    } catch (error) {
+        mobile.value = '';
+        console.log('This is not right syntax');
+    } finally {
+        console.log('finally block');
+    }
+})
+
+console.log(navigator.onLine);

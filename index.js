@@ -166,4 +166,42 @@ form.addEventListener('submit', function (event) {
     }
 })
 
-console.log(navigator.onLine);
+// console.log(navigator.onLine);
+// popup boxes
+// alert("sometext");
+
+// let confirmBox = confirm('Are you sure?');
+// console.log(confirmBox);
+// let promptBox = prompt('Enter your name');
+// console.log(promptBox);
+// console.log('Hello \n this is JS');
+
+// let setTimeoutMethod = setTimeout(() => {
+//     alert('set time out alert')
+// }, 5000);
+
+// let setIntervalMethod = setInterval(() => {
+//     console.log('interval logs');
+// }, 1000);
+
+// let stopTimeoutBtn = document.getElementById('stopTimeout');
+// let stopIntervalBtn = document.getElementById('stopInterval');
+// console.log(stopIntervalBtn);
+
+// stopTimeoutBtn.addEventListener('click', function () {
+//     clearTimeout(setTimeoutMethod);
+// })
+
+// stopIntervalBtn.addEventListener('click', function () {
+//     clearTimeout(setIntervalMethod);
+// })
+
+// DOM
+// form.innerHTML = '<h1>This is Form</h1>';
+// console.log(form.innerHTML);
+
+// let button = document.getElementsByTagName('button')[1].innerHTML = 'changed by JS';
+// let button = document.getElementsByClassName('btn');
+// document.getElementById("stopTimeout").style.background = "blue";
+// console.log(button);
+ 

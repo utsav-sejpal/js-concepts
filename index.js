@@ -204,4 +204,93 @@ form.addEventListener('submit', function (event) {
 // let button = document.getElementsByClassName('btn');
 // document.getElementById("stopTimeout").style.background = "blue";
 // console.log(button);
- 
+
+// Events 
+document.getElementById('mobile').addEventListener('keyup', function () {
+    console.log('keyup event');
+})
+document.getElementById('mobile').addEventListener('keydown', function () {
+    console.log('keydown event');
+})
+document.getElementById('mobile').addEventListener('keypress', function () {
+    console.log('keypress event');
+})
+document.getElementById('mobile').addEventListener('input', function () {
+    console.log('input event');
+})
+window.addEventListener("resize", function () {
+    console.log('resize event');
+});
+
+let dblClickEvent = () => {
+    console.log('double click event');
+}
+
+// Rest and Spread operator and destructuring 
+// Spread Operator
+// var pcItems = ['mouse', 'keyboard', 'monitor', 'cpu'];
+// let otherPcItems = [ 'printer',  'webcam', ...pcItems];
+// console.log(otherPcItems);
+
+// Without Spread Operator
+// let otherPcItems = ['printer', 'webcam'];
+// let newArray = pcItems.concat(otherPcItems)
+
+// Rest Operator
+// function pcItems(...items) {
+//     for (const item of items) {
+//         console.log(item);
+//     }
+// }
+// pcItems('mouse', 'keyboard');
+
+// Without Rest Operator
+// function pcItems(items) {
+//     for (const item of items) {
+//         console.log(item);
+//     }
+// }
+// pcItems(['mouse', 'keyboard']);
+
+// Destructuring Array
+var pcItems = ['mouse', 'keyboard', 'monitor', 'cpu', 'speaker'];
+let [firstElement, secondElement, ...otherElements] = pcItems;
+// console.log(firstElement);
+// console.log(secondElement);
+// console.log(otherElements);
+
+
+// Synchronization
+async function getData() {
+
+    let promise1 = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            fetch("https://jsonplaceholder.typicode.com/todos")
+                .then(
+                    (response) => response.json()
+                )
+                .then(
+                    (json) => resolve(json)
+                );
+        }, 5000)
+    });
+
+    let promise2 = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve("code will run after 5 seconds");
+            // console.log('code will run after 2 seconds');
+        }, 5000);
+    });
+
+    console.log("fetching data");
+    let promise1Value = await promise1;
+    console.log(promise1Value);
+    console.log("fetched from promise 1");
+    let promise2Value = await promise2;
+    console.log(promise2Value);
+    console.log("fetched from promise 2");
+
+    return [promise1Value, promise2Value];
+}
+
+getData().then((value) => console.log(value));

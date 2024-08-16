@@ -97,6 +97,7 @@ const persons = [
 ];
 // const numbers = [1, 2, 3, 4, 5];
 const numbers = ['value 1', 'value 2'];
+// console.log(Object.keys(persons));
 
 let nameArr = [];
 let numberForeach = persons.forEach(element => {
@@ -225,6 +226,7 @@ window.addEventListener("resize", function () {
 let dblClickEvent = () => {
     console.log('double click event');
 }
+// console.log(typeof dblClickEvent);
 
 // Rest and Spread operator and destructuring 
 // Spread Operator
@@ -259,7 +261,7 @@ let [firstElement, secondElement, ...otherElements] = pcItems;
 // console.log(secondElement);
 // console.log(otherElements);
 
-// Synchronization
+// Async Await
 async function getData() {
 
     let promise1 = new Promise((resolve, reject) => {
@@ -292,19 +294,39 @@ async function getData() {
     return [promise1Value, promise2Value];
 }
 
-getData().then((value) => console.log(value));
+// getData().then((value) => console.log(value));
 
 // async function waitForMe() {
 //     return new Promise(resolve => {
 //         setTimeout(() => {
-//             resolve({name: 'test user'});
-//         }, 3000);
+//             resolve({ name: 'test user' });
+//         }, 5000);
 //     });
 // }
 
 // async function getData() {
-//     let waitForMeFunc = await waitForMe();
+//     console.log('start of the function');
+//     // let waitForMeFunc = await waitForMe();
+//     let waitForMeFunc = await getAPIData();
 //     console.log(waitForMeFunc);
 //     console.log('end of the function');
 // }
 // getData();
+
+// async function runProcess() {
+//     console.log('start of the function');
+//     const response = await fetch('https://jsonplaceholder.typicode.com/todos');
+//     const json = await response.json();
+//     console.log(json)
+//     console.log('end of the function');
+// }
+
+let runProcess = async () => {
+    console.log('start of the arrow function');
+    const response = await fetch('https://jsonplaceholder.typicode.com/todos');
+    const json = await response.json();
+    console.log(json)
+    console.log('end of the arrow function');
+}
+
+runProcess();

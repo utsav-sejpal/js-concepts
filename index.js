@@ -259,7 +259,6 @@ let [firstElement, secondElement, ...otherElements] = pcItems;
 // console.log(secondElement);
 // console.log(otherElements);
 
-
 // Synchronization
 async function getData() {
 
@@ -279,7 +278,7 @@ async function getData() {
         setTimeout(() => {
             resolve("code will run after 5 seconds");
             // console.log('code will run after 2 seconds');
-        }, 5000);
+        }, 10000);
     });
 
     console.log("fetching data");
@@ -294,3 +293,18 @@ async function getData() {
 }
 
 getData().then((value) => console.log(value));
+
+// async function waitForMe() {
+//     return new Promise(resolve => {
+//         setTimeout(() => {
+//             resolve({name: 'test user'});
+//         }, 3000);
+//     });
+// }
+
+// async function getData() {
+//     let waitForMeFunc = await waitForMe();
+//     console.log(waitForMeFunc);
+//     console.log('end of the function');
+// }
+// getData();

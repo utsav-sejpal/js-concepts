@@ -35,60 +35,6 @@ name('test user');
 // };
 // console.log('first executed');
 
-class Car {
-    constructor(name, color = 'black') {
-        this.name = name;
-        this.color = color;
-
-    }
-
-    getCarName() {
-        return 'the name of car is ' + this.name + ' and the color is ' + this.color;
-    }
-}
-
-// Inheritance
-class Meetup {
-    constructor() {
-        console.log("inside Meetup constructor");
-    }
-    parentMethod() {
-        console.log('This is parent method');
-    }
-}
-
-class TechMeet extends Meetup {
-    // constructor() {
-    //     super();
-    //     console.log("inside TechMeet constructor");
-    // }
-}
-
-class TechMeet1 extends TechMeet {
-    // constructor() {
-    //     super();
-    //     console.log("inside TechMeet constructor");
-    // }
-
-    // you call direct this method using class 
-    static getDate() {
-        return 'Today is 12/12/2020';
-    }
-    static getValueOfGlobalVariable() {
-        return globalScopeVariable;
-    }
-}
-
-// let meetup = new Meetup();
-// let teachMeet = new TechMeet1();
-// teachMeet.parentMethod();
-// console.log(TechMeet1.getValueOfGlobalVariable());
-// inside Meetup constructor
-// inside TechMeet constructor
-
-
-
-
 
 const persons = [
     { firstname: "Malcom", lastname: "Reynolds" },
@@ -330,3 +276,170 @@ let runProcess = async () => {
 }
 
 // runProcess();
+
+// OOP
+class Car {
+    constructor(name, color = 'black') {
+        this.name = name;
+        this.color = color;
+
+    }
+
+    getCarName() {
+        return 'the name of car is ' + this.name + ' and the color is ' + this.color;
+    }
+}
+
+// Inheritance
+class Meetup {
+    constructor() {
+        console.log("inside Meetup constructor");
+    }
+    parentMethod() {
+        console.log('This is parent method');
+    }
+}
+
+class TechMeet extends Meetup {
+    // constructor() {
+    //     super();
+    //     console.log("inside TechMeet constructor");
+    // }
+}
+
+class TechMeet1 extends TechMeet {
+    // constructor() {
+    //     super();
+    //     console.log("inside TechMeet constructor");
+    // }
+
+    // you call direct this method using class 
+    static getDate() {
+        return 'Today is 12/12/2020';
+    }
+    static getValueOfGlobalVariable() {
+        return globalScopeVariable;
+    }
+}
+
+// let meetup = new Meetup();
+// let teachMeet = new TechMeet1();
+// teachMeet.parentMethod();
+// console.log(TechMeet1.getValueOfGlobalVariable());
+// inside Meetup constructor
+// inside TechMeet constructor
+
+// Abstraction
+class BankAccount {
+    constructor(owner, balance) {
+        this.owner = owner;
+        let _balance = balance; // Private variable (using closure)
+        let newGetBalance = function () {
+            return 'get balance';
+
+        }
+        // Public method to deposit money
+        this.deposit = function (amount) {
+            if (amount > 0) {
+                _balance += amount;
+                console.log(`${amount} deposited. New balance: ${_balance}`);
+            } else {
+                console.log('Deposit amount should be positive.');
+            }
+        };
+
+        // Public method to withdraw money
+        this.withdraw = function (amount) {
+            if (amount > 0 && amount <= _balance) {
+                _balance -= amount;
+                console.log(`${amount} withdrawn. New balance: ${_balance}`);
+            } else {
+                console.log('Insufficient balance or invalid amount.');
+            }
+        };
+
+        // Public method to check balance (Read-only access)
+        this.getBalance = function () {
+            return _balance;
+        };
+    }
+}
+
+const account = new BankAccount('John Doe', 1000);
+
+// Using the public methods
+account.deposit(500); // 500 deposited. New balance: 1500
+account.withdraw(200); // 200 withdrawn. New balance: 1300
+console.log(account.getBalance()); // 1300
+
+
+
+// Polymorphism
+// overwrite parent method
+// class Animal {
+//     makesSound() {
+//         console.log('Animal makes sound');
+//     }
+// }
+
+// class Duck extends Animal {
+//     // makesSound() {
+//     //     console.log('Quack Quack');
+//     // }
+// }
+
+// class Cat extends Duck {
+//     // makesSound() {
+//     //     console.log('meow meow');
+//     // }
+// }
+
+// class Dog extends Animal{
+//     makesSound() {
+//         console.log('');
+//     }
+// }
+
+// const animal = new Animal();
+// const duck = new Duck();
+// const cat = new Cat();
+// const dog = new Dog();
+
+// animal.makesSound() // Quack Quack
+// duck.makesSound() // Quack Quack
+// cat.makesSound() // meow meow
+// dog.makesSound() // meow meow
+
+// Encapsulation
+// class Account {
+//     #balance = 0
+//     constructor(balance) {
+//         this.#balance = balance; // Encapsulated private property
+//     }
+
+//     getBalance() {
+//         return this.#balance;
+//     }
+
+//     #deposit(amount) {
+//         this.#balance += amount;
+//     }
+
+//     depositAmountByCustomer(amount){
+//         this.#deposit(amount)
+//     }
+
+//     withdraw(amount) {
+//         if (this.#balance >= amount) {
+//             this.#balance -= amount;
+//             return true;
+//         } else {
+//             return false;
+//         }
+//     }
+// }
+
+// const account = new Account(1000);
+// account.depositAmountByCustomer(5000)
+// console.log(account.getBalance()); // Accessing balance through getter
+// console.log(account.#balance); 

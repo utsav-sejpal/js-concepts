@@ -334,10 +334,6 @@ class BankAccount {
     constructor(owner, balance) {
         this.owner = owner;
         let _balance = balance; // Private variable (using closure)
-        let newGetBalance = function () {
-            return 'get balance';
-
-        }
         // Public method to deposit money
         this.deposit = function (amount) {
             if (amount > 0) {
@@ -360,86 +356,91 @@ class BankAccount {
 
         // Public method to check balance (Read-only access)
         this.getBalance = function () {
-            return _balance;
+            return newGetBalance();
+            // return _balance;
         };
+
+        let newGetBalance = function () {
+            return _balance + 100;
+        }
     }
 }
 
-const account = new BankAccount('John Doe', 1000);
-
+// const account = new BankAccount('John Doe', 10000);
 // Using the public methods
-account.deposit(500); // 500 deposited. New balance: 1500
-account.withdraw(200); // 200 withdrawn. New balance: 1300
-console.log(account.getBalance()); // 1300
+// console.log(account.owner);
+// account.deposit(500); // 500 deposited. New balance: 1500
+// account.withdraw(2000); // 200 withdrawn. New balance: 1300
+// console.log(account.getBalance()); // 1300
 
-
-
-// Polymorphism
+//  
 // overwrite parent method
-// class Animal {
-//     makesSound() {
-//         console.log('Animal makes sound');
-//     }
-// }
+class Animal {
+    makesSound() {
+        console.log('Class -> Animal, Animal makes sound');
+    }
+}
 
-// class Duck extends Animal {
-//     // makesSound() {
-//     //     console.log('Quack Quack');
-//     // }
-// }
+class Duck extends Animal {
+    makesSound() {
+        console.log('Class -> Duck, Quack Quack');
+    }
+}
 
-// class Cat extends Duck {
-//     // makesSound() {
-//     //     console.log('meow meow');
-//     // }
-// }
+class Cat extends Duck {
+    makesSound() {
+        console.log('Class -> Cat, meow meow');
+    }
+}
 
-// class Dog extends Animal{
-//     makesSound() {
-//         console.log('');
-//     }
-// }
+class Dog extends Cat{
+    // makesSound() {}
+}
 
-// const animal = new Animal();
-// const duck = new Duck();
-// const cat = new Cat();
-// const dog = new Dog();
+const animal = new Animal();
+const duck = new Duck();
+const cat = new Cat();
+const dog = new Dog();
 
-// animal.makesSound() // Quack Quack
+// animal.makesSound()
 // duck.makesSound() // Quack Quack
 // cat.makesSound() // meow meow
-// dog.makesSound() // meow meow
+// dog.makesSound() 
 
 // Encapsulation
-// class Account {
-//     #balance = 0
-//     constructor(balance) {
-//         this.#balance = balance; // Encapsulated private property
-//     }
+class Account {
+    #balance = 0
+    constructor(balance) {
+        this.#balance = balance; // Encapsulated private property
+    }
 
-//     getBalance() {
-//         return this.#balance;
-//     }
+    getBalance() {
+        return this.#balance;
+    }
 
-//     #deposit(amount) {
-//         this.#balance += amount;
-//     }
+    #deposit(amount) {
+        this.#balance += amount;
+    }
 
-//     depositAmountByCustomer(amount){
-//         this.#deposit(amount)
-//     }
+    depositAmountByCustomer(amount){
+        this.#deposit(amount)
+    }
 
-//     withdraw(amount) {
-//         if (this.#balance >= amount) {
-//             this.#balance -= amount;
-//             return true;
-//         } else {
-//             return false;
-//         }
-//     }
-// }
+    withdraw(amount) {
+        if (this.#balance >= amount) {
+            this.#balance -= amount;
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
 
 // const account = new Account(1000);
 // account.depositAmountByCustomer(5000)
-// console.log(account.getBalance()); // Accessing balance through getter
+// account.withdraw(200);
+// console.log(account.getBalance()); // Accessing balance 
+
+// can not be access, because it is private
 // console.log(account.#balance); 
+// console.log(account.#deposit(100)); 

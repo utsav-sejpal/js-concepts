@@ -4,11 +4,10 @@ document.addEventListener('DOMContentLoaded', function () {
     // name()
     // name1()
 
-    // let demo = document.getElementById('demo');
-    // let h1Tag = document.createElement('h1')
-    // demo.append(h1Tag)
-    // console.log(demo);
-    // 
+    let form = document.getElementById('mobileForm');
+    let input = document.createElement('input')
+    input.setAttribute('placeholder', 'Append By Js')
+    // form.append(input);
 });
 let globalScopeVariable = 'this is global scope';
 // console.log(globalVariable);
@@ -393,7 +392,7 @@ class Cat extends Duck {
     }
 }
 
-class Dog extends Cat{
+class Dog extends Cat {
     // makesSound() {}
 }
 
@@ -422,7 +421,7 @@ class Account {
         this.#balance += amount;
     }
 
-    depositAmountByCustomer(amount){
+    depositAmountByCustomer(amount) {
         this.#deposit(amount)
     }
 
@@ -439,8 +438,13 @@ class Account {
 // const account = new Account(1000);
 // account.depositAmountByCustomer(5000)
 // account.withdraw(200);
-// console.log(account.getBalance()); // Accessing balance 
+// console.log(account.getBalance()); // Accessing balance
 
 // can not be access, because it is private
-// console.log(account.#balance); 
+// console.log(account.#balance);
 // console.log(account.#deposit(100)); 
+
+localStorage.setItem('task_details', JSON.stringify(persons))
+let getStorageItem = localStorage.getItem('task_details')
+console.log(JSON.parse(getStorageItem));
+localStorage.removeItem("task_name");

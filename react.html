@@ -14,7 +14,8 @@
     <div id="root"></div>
 
     <script type="text/babel">
-        let root = ReactDOM.createRoot(document.getElementById('root'));
+        let idSelector = document.getElementById('root');
+        let root = ReactDOM.createRoot(idSelector);
 
         function FunctionComponent() {
             return <h1>This is Function Based Component</h1>;
@@ -30,10 +31,11 @@
 
         let element = React.createElement('h1', {}, 'Hello React!')
         root.render(element);
+
         // root.render(<FunctionComponent />);
         // root.render(<ClassComponent />);
         // root.render(React.createElement(FunctionComponent));
-        // ReactDOM.render(<FunctionComponent />, document.getElementById('root'));
+        // ReactDOM.render(<FunctionComponent />, idSelector);
     </script>
 </body>
 

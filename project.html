@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+</head>
+<body>
+    <div class="task-container">
+        <h1>Task Manager</h1>
+        <input type="text" id="taskInput" placeholder="Add a new task">
+        <button onclick="addTask()">Add Task</button>
+        <div id="taskList"></div>
+    </div>
+    <script>
+        // Array to store tasks
+let tasks = [];
+
+// Function to render tasks
+function renderTasks() {
+    const taskList = document.getElementById('taskList');
+    taskList.innerHTML = ''; // Clear the existing tasks
+    
+    tasks.forEach((task, index) => {
+        const taskElement = document.createElement('div');
+        taskElement.classList.add('task');
+        
+        const taskInput = document.createElement('input');
+        taskInput.type = 'text';
+        taskInput.value = task.text;
+        taskInput.disabled = task.isEditing;
+        
+        const editButton = document.createElement('button');
+        editButton.textContent = task.isEditing ? 'Save' : 'Edit';
+        editButton.onclick = () => toggleEdit(index);
+
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.onclick = () => deleteTask(index);
+
+        taskElement.appendChild(taskInput);
+        taskElement.appendChild(editButton);
+        taskElement.appendChild(deleteButton);
+        
+        taskList.appendChild(taskElement);
+    });
+}
+
+// Function to add a new task
+function addTask() {
+    const taskInput = document.getElementById('taskInput');
+    if (taskInput.value.trim() !== '') {
+        tasks.push({ text: taskInput.value, isEditing: false });
+        taskInput.value = '';
+        renderTasks();
+    }
+}
+
+// Function to toggle editing mode
+function toggleEdit(index) {
+    if (tasks[index].isEditing) {
+        const newText = document.querySelectorAll('#taskList .task input')[index].value;
+        tasks[index].text = newText;
+        tasks[index].isEditing = false;
+    } else {
+        tasks[index].isEditing = true;
+    }
+    renderTasks();
+}
+
+// Function to delete a task
+function deleteTask(index) {
+    tasks.splice(index, 1);
+    renderTasks();
+}
+
+// Initial render
+renderTasks();
+
+    </script>
+</body>
+</html>
